@@ -33,22 +33,11 @@ class App extends Component {
         }));
     }
 
-    onToggleFavourite = id => {
+    onToggleProp = (id, prop) => {
         this.setState(({data}) => ({
             data: data.map(item => {
                 if(item.id === id) {
-                    return { ...item, favourite: !item.favourite }
-                }
-                return item
-            })
-        }))
-    }
-
-    onToggleLike = id => {
-        this.setState(({data}) => ({
-            data: data.map(item => {
-                if(item.id === id) {
-                    return { ...item, like: !item.like }
+                    return { ...item, [prop]: !item[prop] }
                 }
                 return item
             })
@@ -66,7 +55,7 @@ class App extends Component {
                         <SearchPanel />
                         <AppFilter/>
                     </div>
-                    <MovieList data={data} onDelete={this.onDelete} onToggleFavourite={this.onToggleFavourite} onToggleLike={this.onToggleLike} />
+                    <MovieList data={data} onDelete={this.onDelete} onToggleProp={this.onToggleProp} />
                     <MovieAddForm addForm={this.addForm}/>
                  </div>
             </div>

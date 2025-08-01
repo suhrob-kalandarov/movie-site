@@ -18,13 +18,19 @@ class MovieAddForm extends Component {
     }
 
     addFormHandler = e => {
-        e.preventDefault()
-        if (!this.state.name || !this.state.views) return;
+        e.preventDefault();
+        const { name, views } = this.state;
+
+        if (!name || !views) return;
+
+        this.props.addForm({ name, viewers: views });
+
         this.setState({
             name: '',
             views: ''
-        })
-    }
+        });
+};
+
 
     render() {
         const{ name, views} = this.state
