@@ -16,7 +16,8 @@ class App extends Component {
                 { id: 1, name: 'Empire of Osman', viewers: 890, favourite: false, like: false},
                 { id: 2, name: 'Ertugrul', viewers: 506, favourite: false, like: false },
                 { id: 3, name: 'Oman', viewers: 989, favourite: false, like: false }
-            ]
+            ],
+            term:''
         }
     }
     
@@ -44,20 +45,28 @@ class App extends Component {
         }))
     }
 
+    searchHnadler = (arr, term) => {
+        if(term === 0) return arr
+        return arr.filter(item=> item.name.toLowerCase().indexOf(term) > -1)
+    }
+
+    updateTermHandler = term => this.setState({term})
+    
     render(){
-        const {data} = this.state
+        const {data, term} = this.state
         const allMoviesCount = data.length
         const favouriteMoviesCount = data.filter(c => c.favourite).length
+        const visibleData = this.searchHnadler(data, term)
 
         return (
             <div className='app font-monospace'>
                 <div className='content'>
                     <AppInfo allMoviesCount={allMoviesCount} favouriteMoviesCount={favouriteMoviesCount} />
                     <div className='search-panel'>
-                        <SearchPanel />
+                        <SearchPanel updateTermHandler = {this.updateTermHandler}/>
                         <AppFilter/>
                     </div>
-                    <MovieList data={data} onDelete={this.onDelete} onToggleProp={this.onToggleProp} />
+                    <MovieList data={visibleData} onDelete={this.onDelete} onToggleProp={this.onToggleProp} />
                     <MovieAddForm addForm={this.addForm}/>
                  </div>
             </div>
