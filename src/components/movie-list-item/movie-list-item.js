@@ -20,44 +20,24 @@ class MovieListItem extends Component {
     }
 
     render() {
-        const {name, viewers, onDelete} = this.props
-        const {favourite, like} = this.state
+        const {name, viewers, favourite, like, onDelete, onToggleFavourite, onToggleLike} = this.props
 
         return (
-        // ${like && 'like'}
-        <li className={`list-group-item d-flex justify-content-between ${favourite && 'favourite'} ${like && 'like'}`}> 
-            <span onClick={this.onLike} className='list-group-item-label'>
-                {name}
-            </span>
+            <li className={`list-group-item d-flex justify-content-between ${favourite && 'favourite'} ${like && 'like'}`}> 
+            <span onClick={onToggleLike} className='list-group-item-label'>{name}</span>
             <input type='number' className='list-group-item-input' defaultValue={viewers}/>
             <div className='d-flex justify-content-center align-items-center'>
-                <button type="button" className='btn-cookie btn-sm' onClick={this.onFavourite}>
-                    <i className="fas fa-star"></i>
+                <button type="button" className='btn-cookie btn-sm' onClick={onToggleFavourite}>
+                    <i className="fas fa-heart"></i>
                 </button>
                 <button type="button" className="btn-trash btn-sm" onClick={onDelete}>
                     <i className="fas fa-trash"></i>
                 </button>
-            </div>
-        </li>
-    )
+                <i className="fas fa-star" onClick={onToggleLike}></i>
+                </div>
+            </li>
+        )
     }
 }
-
-// const MovieListItem = ({name, viewers, favourite}) => {
-//     return (
-//         <li className={`list-group-item d-flex justify-content-between ${favourite && 'favourite'}`}>
-//             <span className='list-group-item-label'>{name}</span>
-//             <input type='number' className='list-group-item-input' defaultValue={viewers}/>
-//             <div className='d-flex justify-content-center align-items-center'>
-//                 <button type="button" className="btn-cookie btn-sm">
-//                     <i className="fas fa-star"></i>
-//                 </button>
-//                 <button type="button" className="btn-trash btn-sm">
-//                     <i className="fas fa-trash"></i>
-//                 </button>
-//             </div>
-//         </li>
-//     )
-// }
 
 export default MovieListItem
