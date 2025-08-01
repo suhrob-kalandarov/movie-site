@@ -46,11 +46,13 @@ class App extends Component {
 
     render(){
         const {data} = this.state
+        const allMoviesCount = data.length
+        const favouriteMoviesCount = data.filter(c => c.favourite).length
 
         return (
             <div className='app font-monospace'>
                 <div className='content'>
-                    <AppInfo />
+                    <AppInfo allMoviesCount={allMoviesCount} favouriteMoviesCount={favouriteMoviesCount} />
                     <div className='search-panel'>
                         <SearchPanel />
                         <AppFilter/>
