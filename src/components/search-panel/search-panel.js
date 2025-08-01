@@ -16,7 +16,7 @@ class SearchPanel extends Component {
   render(){
     return (
       <input 
-        type="text" 
+        type="text"
         className="form-control search-input" 
         placeholder="Kinolarni qidirish"
         onChange={this.listenTermHandler}

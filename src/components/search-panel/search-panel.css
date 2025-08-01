@@ -1,6 +1,11 @@
 search-input {
     padding: 1.5rem;
-    border-radius: 4px;
+    border-radius: 9px;
     background-color: #fcfaf5;
     box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.form-control {
+    padding: 1rem;
+    border-radius: 9px;
 }

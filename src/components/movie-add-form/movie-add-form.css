@@ -5,3 +5,15 @@
     background-color: #fcfaf5;
     box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.15);
 }
+
+.add-form {
+    height: 70px;
+    padding: 0.5rem;
+    margin: 1rem;
+    gap: 10px;
+    border-radius: 9px;
+}
+
+.btn{
+    height: 50px;
+}

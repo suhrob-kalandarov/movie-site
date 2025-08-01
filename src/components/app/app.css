@@ -3,16 +3,16 @@
     color: black;
 }
 
+.search-panel {
+    padding: 2.5rem;
+    border-radius: 7px;
+    background-color: #fcfaf5;
+    box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.15);
+}
+
 .content {
     max-width: 1000px;
     background-color: aliceblue;
     margin: 0 auto;
-    padding: 5rem 0;
-}
-
-.search-panel {
-    padding: 1.5rem;
-    border-radius: 4px;
-    background-color: #fcfaf5;
-    box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.15);
+    padding: 2rem 0;
 }
