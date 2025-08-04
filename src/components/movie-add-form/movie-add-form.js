@@ -1,66 +1,46 @@
-import { Component } from 'react'
+import { useState } from 'react'
 import './movie-add-form.css'
 
-class MovieAddForm extends Component {
+const MovieAddForm = ({ addForm }) => {
+    const [state, setState] = useState({ name: '', views: '' })
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            name: '',
-            views: ''
-        }
+    const changeHandlerInput = e => {
+        setState({ ...state, [e.target.name]: e.target.value })
     }
 
-    changeHandlerInput = e => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
+    const addFormHandler = e => {
+        e.preventDefault()
+        const data = { name: state.name, viewers: state.views }
+        addForm(data)
+        setState({ name: '', views: '' })
     }
 
-    addFormHandler = e => {
-        e.preventDefault();
-        const { name, views } = this.state;
-
-        if (!name || !views) return;
-
-        this.props.addForm({ name, viewers: views });
-
-        this.setState({
-            name: '',
-            views: ''
-        });
-};
-
-
-    render() {
-        const{ name, views} = this.state
-        const{addForm} = this.props
-
-         return <div className="movie-add-form">
-        <h3>Yangi kino qo'shish</h3>
-        <form className='add-form d-flex' onSubmit={this.addFormHandler}>
-            <input
-            type='text'
-            className='form-control new-post-label'
-            placeholder='Qanday kino?'
-            onChange={this.changeHandlerInput}
-            name='name'
-            value={name}
-            />
-            <input
-            type='number'
-            className='form-control new-post-label'
-            placeholder="Nechi marotaba ko'rilgan?"
-            onChange={this.changeHandlerInput}
-            name='views'
-            value={views}
-            />
-            <button type='submit' className='btn btn-outline-dark'>
-                Qo'shish  
-            </button>
-        </form>
-    </div>
-    }
+    return (
+        <div className="movie-add-form">
+            <h3>Yangi kino qo'shish</h3>
+            <form className='add-form d-flex' onSubmit={addFormHandler}>
+                <input
+                    type='text'
+                    className='form-control new-post-label'
+                    placeholder='Qanday kino?'
+                    onChange={changeHandlerInput}
+                    name='name'
+                    value={state.name}
+                />
+                <input
+                    type='number'
+                    className='form-control new-post-label'
+                    placeholder="Nechi marotaba ko'rilgan?"
+                    onChange={changeHandlerInput}
+                    name='views'
+                    value={state.views}
+                />
+                <button type='submit' className='btn btn-outline-dark'>
+                    Qo'shish
+                </button>
+            </form>
+        </div>
+    )
 }
 
 export default MovieAddForm
